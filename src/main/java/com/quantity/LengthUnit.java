@@ -1,6 +1,6 @@
 package com.quantity;
 
-public enum LengthUnit {
+public enum LengthUnit implements IMeasurable {
 
     FEET(1.0),
     INCH(1.0 / 12.0),
@@ -13,13 +13,18 @@ public enum LengthUnit {
         this.toFeet = toFeet;
     }
 
-    // convert → base (feet)
+    @Override
     public double toBase(double value) {
         return value * toFeet;
     }
 
-    // convert ← base (feet)
+    @Override
     public double fromBase(double value) {
         return value / toFeet;
+    }
+
+    @Override
+    public String getUnitName() {
+        return name();
     }
 }
